@@ -18,8 +18,14 @@ router
 
 router.delete('/logout', [SessionController, 'destroy']).as('session.destroy')
 
-// Route admin (placeholder — protection auth ajoutée en Story 3.2)
-router.get('/admin', [AdminController, 'index']).as('admin.dashboard')
+// Groupe admin protégé — toutes les routes admin futures s'ajoutent ici
+// Story 3.3+ : RBAC, membres, signalements, audit...
+router
+  .group(() => {
+    router.get('/', [AdminController, 'index']).as('admin.dashboard')
+  })
+  .prefix('/admin')
+  .use(middleware.auth())
 
 // Routes register (du starter kit — seront retirées ou sécurisées en Story 3.4)
 router.get('/register', [NewAccountController, 'create']).as('new_account.create')
