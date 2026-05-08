@@ -1,3 +1,4 @@
+import app from '@adonisjs/core/services/app'
 import { defineConfig } from '@adonisjs/shield'
 
 const shieldConfig = defineConfig({
@@ -30,7 +31,8 @@ const shieldConfig = defineConfig({
     /**
      * Enable CSRF token verification for state-changing requests.
      */
-    enabled: true,
+    // Désactivé en mode test pour permettre les requêtes HTTP sans token CSRF
+    enabled: !app.inTest,
 
     /**
      * Route patterns to exclude from CSRF checks.

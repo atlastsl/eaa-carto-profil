@@ -3,9 +3,20 @@ import app from '@adonisjs/core/services/app'
 import { defineConfig } from '@adonisjs/lucid'
 
 const dbConfig = defineConfig({
-  connection: 'pg',
+  connection: app.inTest ? 'sqlite' : 'pg',
 
   connections: {
+    // Base SQLite in-memory pour les tests (aucune connexion PostgreSQL requise)
+    sqlite: {
+      client: 'better-sqlite3',
+      connection: { filename: ':memory:' },
+      useNullAsDefault: true,
+      migrations: {
+        naturalSort: true,
+        paths: ['database/migrations'],
+      },
+    },
+
     pg: {
       client: 'pg',
       connection: {

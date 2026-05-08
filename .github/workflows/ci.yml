@@ -26,11 +26,10 @@ jobs:
       - name: Build (TypeScript + Vite)
         run: node ace build
 
-      - name: Run unit tests
-        # Suite "unit" cible tests/unit/**/*.spec.ts sans démarrer le serveur HTTP
-        # Les variables CI ci-dessous sont des valeurs de test non-sensibles :
-        # DB_HOST/USER/DATABASE sont des placeholders — aucun test unitaire ne se connecte à la DB
-        run: node ace test unit
+      - name: Run tests
+        # DB_HOST/USER/DATABASE sont des placeholders — DB réelle = SQLite in-memory (app.inTest)
+        # LIMITER_STORE=memory évite toute dépendance externe pour le rate limiting
+        run: node ace test unit functional
         env:
           NODE_ENV: test
           PORT: '3333'
@@ -44,3 +43,4 @@ jobs:
           DB_PASSWORD: ''
           DB_DATABASE: carto_profil_test
           SESSION_DRIVER: cookie
+          LIMITER_STORE: memory

@@ -76,8 +76,8 @@ development_status:
   epic-2-retrospective: optional
 
   # Epic 3: Controle d'acces admin et gouvernance des roles
-  epic-3: backlog
-  3-1-authentification-admin-session: backlog
+  epic-3: in-progress
+  3-1-authentification-admin-session: review
   3-2-proteger-routes-admin-middleware: backlog
   3-3-rbac-admin-super-admin: backlog
   3-4-creer-modifier-desactiver-comptes-admin: backlog

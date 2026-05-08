@@ -56,7 +56,7 @@ so that chaque incrément validé puisse être livré rapidement et fiablement.
   - [x] Build local `node ace build` → ✅ succès sans erreur TypeScript
   - [x] Tests locaux `node ace test` → ✅ 18/18 passent (unit + functional)
   - [x] TypeScript complet `npm run typecheck` → ✅ 0 erreur backend et frontend
-  - [x] Validation Vercel et GitHub Actions → MANUEL après push sur le dépôt distant
+  - [x] Déploiement Railway → ✅ confirmé fonctionnel (application accessible en production)
 
 ## Dev Notes
 
@@ -65,7 +65,7 @@ so that chaque incrément validé puisse être livré rapidement et fiablement.
 | Composant | Choix | Justification |
 |-----------|-------|---------------|
 | CI (checks) | GitHub Actions | Natif GitHub, `.github/workflows/` déjà présent (Story 1.1) |
-| CD (déploiement) | Vercel (intégration GitHub) | Architecture décidée dans architecture.md |
+| CD (déploiement) | Railway (intégration GitHub) | Vercel incompatible avec AdonisJS (serverless vs serveur persistant) — Railway confirmé en prod |
 | Node.js dev | 24.x | Requis par AdonisJS v7 pour l'exécution native TypeScript en dev |
 | Node.js prod | 22.x LTS | Build output = JS compilé → Node 22 LTS suffisant sur Vercel |
 
@@ -269,4 +269,4 @@ claude-sonnet-4-6
 
 ### Change Log
 
-- 2026-05-08 : Story 1.2 implémentée — workflow GitHub Actions CI, vercel.json, config SSL Supabase, correction 5 erreurs TypeScript pré-existantes bloquant le CI
+- 2026-05-08 : Story 1.2 implémentée — workflow GitHub Actions CI, railway.json, config SSL Supabase, correction 5 erreurs TypeScript pré-existantes. Déploiement confirmé sur Railway (Vercel abandonné — incompatible avec AdonisJS serveur persistant)

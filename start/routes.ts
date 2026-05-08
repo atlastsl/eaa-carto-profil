@@ -1,27 +1,26 @@
 import router from '@adonisjs/core/services/router'
+import { middleware } from '#start/kernel'
+import { loginThrottle } from '#start/limiter'
 
 router.on('/').renderInertia('public/home', {}).as('home')
 
-// Routes auth du starter kit (à sécuriser en Story 3 - Epic 3)
 const SessionController = () => import('#controllers/session_controller')
 const NewAccountController = () => import('#controllers/new_account_controller')
+const AdminController = () => import('#modules/admin/admin_controller')
 
+// Routes login — middleware guest : redirige si déjà authentifié
 router
-  .get('/login', [SessionController, 'create'])
-  .as('session.create')
+  .group(() => {
+    router.get('/login', [SessionController, 'create']).as('session.create')
+    router.post('/login', [SessionController, 'store']).as('session.store').use(loginThrottle)
+  })
+  .use(middleware.guest())
 
-router
-  .post('/login', [SessionController, 'store'])
-  .as('session.store')
+router.delete('/logout', [SessionController, 'destroy']).as('session.destroy')
 
-router
-  .delete('/logout', [SessionController, 'destroy'])
-  .as('session.destroy')
+// Route admin (placeholder — protection auth ajoutée en Story 3.2)
+router.get('/admin', [AdminController, 'index']).as('admin.dashboard')
 
-router
-  .get('/register', [NewAccountController, 'create'])
-  .as('new_account.create')
-
-router
-  .post('/register', [NewAccountController, 'store'])
-  .as('new_account.store')
+// Routes register (du starter kit — seront retirées ou sécurisées en Story 3.4)
+router.get('/register', [NewAccountController, 'create']).as('new_account.create')
+router.post('/register', [NewAccountController, 'store']).as('new_account.store')
