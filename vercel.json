@@ -1,15 +1,6 @@
 {
+  "_comment": "AdonisJS est un serveur HTTP persistant incompatible avec Vercel serverless. Utiliser Railway pour le déploiement (voir railway.json). Ce fichier est conservé pour référence uniquement.",
   "version": 2,
-  "builds": [
-    {
-      "src": "build/bin/server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "build/bin/server.js"
-    }
-  ]
+  "buildCommand": "node ace build",
+  "installCommand": "npm ci"
 }
