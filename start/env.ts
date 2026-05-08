@@ -38,7 +38,7 @@ export default await Env.create(new URL('../', import.meta.url), {
   | Variables for configuring the limiter package
   |----------------------------------------------------------
   */
-  LIMITER_STORE: Env.schema.enum(['database', 'memory'] as const),
+  LIMITER_STORE: Env.schema.enum.optional(['database', 'memory'] as const),
 
   // Admin seeder credentials (optionnels, valeurs par défaut de dev utilisées si absents)
   ADMIN_EMAIL: Env.schema.string.optional(),
