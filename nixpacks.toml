@@ -1,0 +1,5 @@
+# Force l'installation de toutes les dépendances (y compris devDependencies)
+# nécessaires pour node ace build (@poppinss/ts-exec, typescript, vite, etc.)
+# Railway définit NODE_ENV=production par défaut, ce qui ferait sauter les devDeps
+[phases.install]
+cmds = ["npm ci"]
