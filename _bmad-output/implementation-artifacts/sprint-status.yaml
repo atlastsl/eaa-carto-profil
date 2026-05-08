@@ -1,0 +1,120 @@
+# generated: 2026-05-08
+# last_updated: 2026-05-08
+# project: carto-profil
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: {project-root}/_bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - Developer typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+#
+# DELIVERY ORDER:
+# ===============
+# 1) Stories 1.1, 1.2 (socle + CI/CD)
+# 2) Epic 3 (auth admin)
+# 3) Epic 4 (CRUD membres)
+# 4) Epic 1 stories 1.3 → 1.10 (parcours public)
+# 5) Epic 2 (cartographie)
+# 6) Epic 5 (signalement)
+# 7) Epic 6 (metriques + audit)
+
+generated: 2026-05-08
+last_updated: 2026-05-08  # updated: story 1.2 → ready-for-dev
+project: carto-profil
+project_key: NOKEY
+tracking_system: file-system
+story_location: "{project-root}/_bmad-output/implementation-artifacts"
+
+development_status:
+  # Epic 1: Decouverte publique des membres (Annuaire + Recherche + Profil)
+  epic-1: in-progress
+  1-1-initialiser-socle-app-web-public: review
+  1-2-deploiement-continu-mise-en-ligne: review
+  1-3-accueil-public-oriente-decouverte: backlog
+  1-4-annuaire-alphabetique-membres-actifs: backlog
+  1-5-index-a-z-navigation-annuaire: backlog
+  1-6-panneau-filtres-recherche-multicritere: backlog
+  1-7-etats-resultats-normal-vide-profils-similaires: backlog
+  1-8-fiche-membre-publique-detaillee: backlog
+  1-9-mise-en-relation-canaux-contact: backlog
+  1-10-rubrique-bureau-eaa: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: Exploration cartographique synchronisee
+  epic-2: backlog
+  2-1-vue-carte-membres: backlog
+  2-2-membres-carte-clustering: backlog
+  2-3-profil-depuis-carte: backlog
+  2-4-synchroniser-filtres-annuaire-carte: backlog
+  2-5-etat-navigation-switch-vue: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Controle d'acces admin et gouvernance des roles
+  epic-3: backlog
+  3-1-authentification-admin-session: backlog
+  3-2-proteger-routes-admin-middleware: backlog
+  3-3-rbac-admin-super-admin: backlog
+  3-4-creer-modifier-desactiver-comptes-admin: backlog
+  3-5-reinitialiser-mot-de-passe-admin: backlog
+  3-6-expirer-sessions-admin-inactives: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Gestion du referentiel membres (CRUD, regles metier, cycle de vie)
+  epic-4: backlog
+  4-1-structure-donnees-membres-desactivation-logique: backlog
+  4-2-formulaire-creation-membre-validations: backlog
+  4-3-champs-facultatifs-enrichissement-profil: backlog
+  4-4-empecher-doublons-creation: backlog
+  4-5-modifier-profil-membre: backlog
+  4-6-role-bureau-profils: backlog
+  4-7-desactiver-membre: backlog
+  4-8-vues-admin-etat-actif-desactive: backlog
+  4-9-regles-visibilite-public-admin: backlog
+  4-10-super-admin-gerer-membres: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Signalement communautaire et correction qualite
+  epic-5: backlog
+  5-1-signalement-erreur-fiche-membre: backlog
+  5-2-flux-signalement-captcha: backlog
+  5-3-lister-signalements-admin: backlog
+  5-4-traiter-signalement-mise-a-jour-profil: backlog
+  5-5-marquer-signalement-traite: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: Mesure d'usage, tracabilite et audit
+  epic-6: backlog
+  6-1-instrumenter-evenements-contact: backlog
+  6-2-comptabiliser-visites-site: backlog
+  6-3-comptabiliser-vues-profils: backlog
+  6-4-agreger-metriques-usage-admin: backlog
+  6-5-journaliser-actions-administration: backlog
+  6-6-historique-audit-agrege-super-admin: backlog
+  6-7-historique-admin-specifique: backlog
+  epic-6-retrospective: optional

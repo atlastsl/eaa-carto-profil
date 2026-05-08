@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (TypeScript + Vite)
+        run: node ace build
+
+      - name: Run unit tests
+        # Suite "unit" cible tests/unit/**/*.spec.ts sans démarrer le serveur HTTP
+        # Les variables CI ci-dessous sont des valeurs de test non-sensibles :
+        # DB_HOST/USER/DATABASE sont des placeholders — aucun test unitaire ne se connecte à la DB
+        run: node ace test unit
+        env:
+          NODE_ENV: test
+          PORT: '3333'
+          HOST: localhost
+          LOG_LEVEL: error
+          APP_KEY: ci-test-app-key-not-for-production
+          APP_URL: 'http://localhost:3333'
+          DB_HOST: localhost
+          DB_PORT: '5432'
+          DB_USER: postgres
+          DB_PASSWORD: ''
+          DB_DATABASE: carto_profil_test
+          SESSION_DRIVER: cookie
